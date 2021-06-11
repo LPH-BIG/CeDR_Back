@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
 
 @Data
@@ -13,25 +12,31 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Table(name = "association")
-public class CellLineAssociation {
+public class Association {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 100)
-    private String accession;
+    private String source;
+
+    @Column(length = 100)
+    private String project;
+
+    @Column(length = 200)
+    private String subproject;
 
     @Column(length = 100)
     private String tissue;
 
     @Column(length = 100)
-    private String status;
-
-    @Column(length = 100)
-    private String inst;
+    private String phenotype;
 
     @Column(length = 100)
     private String celltype;
+
+    @Column(length = 100)
+    private String inst;
 
     @Column
     private Double pvalue1;
@@ -50,6 +55,9 @@ public class CellLineAssociation {
 
     @Column
     private Double spvalue;
+
+    @Column
+    private Double overlapgenenum;
 
     @Column(columnDefinition = "text")
     private String overlapgene;

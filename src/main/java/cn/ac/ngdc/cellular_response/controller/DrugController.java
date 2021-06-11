@@ -22,18 +22,18 @@ public class DrugController {
     public Result findByName(@RequestParam("id") Integer id){
         Optional<Drug> drug = drugService.findById(id);
         if (null != drug){
-            return ResultFactory.buildSuccessResult(drug);
+            return ResultFactory.buildSuccessResult(drug,null);
         }else {
-            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null);
+            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
         }
     }
     @GetMapping("/alldrug")
     public Result findByName(@RequestParam("pageIndex") Integer pageIndex,@RequestParam("pageSize") Integer pageSize){
         List<Drug> drugs = drugService.getAll(pageIndex,pageSize);
         if (null != drugs){
-            return ResultFactory.buildSuccessResult(drugs);
+            return ResultFactory.buildSuccessResult(drugs,null);
         }else {
-            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null);
+            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
         }
     }
 }
