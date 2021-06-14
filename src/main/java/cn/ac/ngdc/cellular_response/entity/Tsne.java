@@ -12,13 +12,26 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "umap")
-public class Umap {
+@Table(name = "tsne")
+public class Tsne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 100)
-    private String accession;
+    @Column(length = 250)
+    private String name;
+
+    @Column(length = 250)
+    private String cellname;
+
+    @Column
+    private Double x;
+
+    @Column
+    private Double y;
+
+    @Column
+    private String annotation;
+
 
 }

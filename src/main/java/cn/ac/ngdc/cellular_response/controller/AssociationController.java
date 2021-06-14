@@ -45,6 +45,9 @@ public class AssociationController {
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "pcutoff",required = false,defaultValue = "0.1") Double pcutoff,
                         @RequestParam(value = "orcutoff",required = false,defaultValue = "1") Double orcutoff){
+        if(null == source && null == tissue && null == cellType  && null == phenotype  && null == drug){
+            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
+        }
         List<Association> associationList = associationService.queryLike(0,0,source,tissue,cellType,phenotype,drug,pcutoff,orcutoff);
         if(null != associationList){
             HashSet<String> Source = new HashSet<String>();
