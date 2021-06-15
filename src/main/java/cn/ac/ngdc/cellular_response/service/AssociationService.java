@@ -24,7 +24,7 @@ public class AssociationService {
     @Autowired
     AssociationDAO associationDAO;
     public Result queryAssociation(Integer pageSize, Integer pageIndex,
-                                   String source, String tissue, String cellType,
+                                   String source,String project,String subproject, String tissue, String cellType,
                                    String phenotype, String drug, Double pcutoff, Double orcutoff){
         Long total = 0L;
         List<Association> data = null;
@@ -36,6 +36,12 @@ public class AssociationService {
                 List<Predicate> predicateList = new ArrayList<>();
                 if (source != null){
                     predicateList.add(criteriaBuilder.equal(root.get("source"),source));
+                }
+                if (project != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("project"),project));
+                }
+                if (subproject != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("subproject"),subproject));
                 }
                 if (tissue != null){
                     predicateList.add(criteriaBuilder.equal(root.get("tissue"),tissue));
@@ -50,7 +56,6 @@ public class AssociationService {
                     predicateList.add(criteriaBuilder.equal(root.get("inst").as(String.class),drug));
                 }
 
-//                System.out.println(drug);
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
             }
         };

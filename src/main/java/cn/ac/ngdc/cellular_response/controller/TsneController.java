@@ -19,7 +19,7 @@ public class TsneController {
     @CrossOrigin
     @GetMapping("/tsne")
     public Result getByName(@RequestParam(value = "name",required = true) String name) {
-        List <Tsne> tsneList = tsneService.findByName(name);
-        return ResultFactory.buildSuccessResult(tsneList,null);
+        Object tsne = tsneService.findByName(name);
+        return ResultFactory.buildSuccessResult(tsne,null);
     }
 }
