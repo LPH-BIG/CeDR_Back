@@ -102,8 +102,6 @@ public class AssociationController {
             networkList.add(map1);
             networkList.add(map2);
         }
-
-
         return ResultFactory.buildSuccessResult(networkList,null);
     }
 
