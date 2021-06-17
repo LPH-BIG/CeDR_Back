@@ -19,9 +19,21 @@ public class Gene {
     private Integer id;
 
     @Column(length = 100)
-    private String name;
+    private String symbol;
+
+    @Column
+    private Integer chromosome;
 
     @Column(columnDefinition = "text")
     private String description;
+
+    @Column(length = 100)
+    private String type;
+
+    @Column(columnDefinition = "text")
+    private String fullname;
+
+    @Column
+    private String refs;
 
 }

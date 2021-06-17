@@ -42,5 +42,7 @@ public class General {
     @Column(columnDefinition = "text")
     private String drug;
 
+    @Column(columnDefinition = "text")
+    private String celltype;
 
 }

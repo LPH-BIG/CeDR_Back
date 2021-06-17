@@ -11,10 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Keywords {
-    private HashSet<String> source;
-    private HashSet<String> tissue;
-    private HashSet<String> phenotype;
     private HashSet<String> celltype;
-    private HashSet<String> inst;
+    private HashSet<String> drug;
+    private HashSet<String> overlapgene;
 
 }
