@@ -7,6 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface DrugDAO extends PagingAndSortingRepository<Drug,Integer> {
-    Optional<Drug> findById(Integer id);
+public interface DrugDAO extends JpaRepository<Drug,Integer> {
+    public Drug findByInst(String name);
 }

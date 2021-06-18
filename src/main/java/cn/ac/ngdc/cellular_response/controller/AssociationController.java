@@ -6,7 +6,6 @@ import cn.ac.ngdc.cellular_response.result.ResultCode;
 import cn.ac.ngdc.cellular_response.result.ResultFactory;
 import cn.ac.ngdc.cellular_response.service.AssociationService;
 import cn.ac.ngdc.cellular_response.utils.Keywords;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -102,11 +101,13 @@ public class AssociationController {
             map1.put("from",association.getSubproject());
             map1.put("to",association.getCelltype());
 
-            Map<String,String> map2 = new HashMap<>();
-            map2.put("from",association.getCelltype());
-            map2.put("to",association.getInst());
-            networkList.add(map1);
-            networkList.add(map2);
+            if (association.getPvalue1()<=0.01 && association.getPvalue2()<=0.01){
+                Map<String,String> map2 = new HashMap<>();
+                map2.put("from",association.getCelltype());
+                map2.put("to",association.getInst());
+                networkList.add(map1);
+                networkList.add(map2);
+            }
         }
         return ResultFactory.buildSuccessResult(networkList,null);
     }
