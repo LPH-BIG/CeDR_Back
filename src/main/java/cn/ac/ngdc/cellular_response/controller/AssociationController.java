@@ -96,6 +96,7 @@ public class AssociationController {
         Result associationList = associationService.queryAssociation(0,0,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         List<Association> associations = (List<Association>) associationList.getData();
         HashSet<Object> networkList = new HashSet<>();
+        Map<String,Object> objectMap = new HashMap<>();
         for (Association association : associations){
             Map<String,String> map1 = new HashMap<>();
             map1.put("from",association.getSubproject());
@@ -109,7 +110,8 @@ public class AssociationController {
                 networkList.add(map2);
             }
         }
-        return ResultFactory.buildSuccessResult(networkList,null);
+        objectMap.put("data",networkList);
+        return ResultFactory.buildSuccessResult(objectMap,null);
     }
 
 }

@@ -15,10 +15,10 @@ public class SearchController {
     @Autowired
     SearchDAO searchDAO;
 
-    @CrossOrigin
-    @GetMapping("/select")
-    public List<Search> getByTypeName(@RequestParam(value = "type",required = true) String type,
-                                      @RequestParam(value = "name",required = true) String name){
-        return searchDAO.findSearchesByTypeAndNameIsLike(type,name);
-    }
+//    @CrossOrigin
+//    @GetMapping("/select")
+//    public List<Search> getByTypeName(@RequestParam(value = "type",required = true) String type,
+//                                      @RequestParam(value = "name",required = true) String name){
+//        return searchDAO.findSearchesByTypeAndNameIsLike(type,name);
+//    }
 }

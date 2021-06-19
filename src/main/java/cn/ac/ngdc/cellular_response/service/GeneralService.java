@@ -76,4 +76,43 @@ public class GeneralService {
         }
         return ResultFactory.buildSuccessResult(data,meta);
     }
+
+    public List<General> queryLike(String source,String project,String subproject,String tissue,String phenotype,String celltype,String drug){
+        List<General> generalList = null;
+        Specification<General> queryCondition = new Specification<General>() {
+            @Override
+            public Predicate toPredicate(Root<General> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+                List<Predicate> predicateList = new ArrayList<>();
+                if (source != null){
+                    predicateList.add(criteriaBuilder.like(root.get("source"),"%" + source + "%"));
+                }
+                if (project != null){
+                    predicateList.add(criteriaBuilder.like(root.get("project"),"%" + project + "%"));
+                }
+                if (subproject != null){
+                    predicateList.add(criteriaBuilder.like(root.get("subproject"),"%" + subproject + "%"));
+                }
+                if (tissue != null){
+                    predicateList.add(criteriaBuilder.like(root.get("tissue"),"%" + tissue + "%"));
+                }
+                if (celltype != null){
+                    predicateList.add(criteriaBuilder.like(root.get("celltype"),"%" + celltype + "%"));
+                }
+                if (drug != null){
+                    predicateList.add(criteriaBuilder.like(root.get("drug").as(String.class),"%" + drug + "%"));
+                }
+
+                return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
+            }
+        };
+
+        try {
+            Sort sort = Sort.by(Sort.Direction.ASC, "id");
+            generalList = generalDAO.findAll(queryCondition);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return generalList;
+    }
 }

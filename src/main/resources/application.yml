@@ -9,7 +9,7 @@ spring:
   datasource:
     username: kkk
     password: kkk@123456
-    url: jdbc:mysql://192.168.164.82:33060/kanghe_db?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.164.83:33062/kkk?characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
