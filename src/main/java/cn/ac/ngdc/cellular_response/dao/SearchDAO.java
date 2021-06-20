@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SearchDAO extends JpaRepository<Search,Integer> {
-    public List<Search> findByName(String name);
+
+    List<Search> findByNameLike(String name);
 
     @Query(value = "select s from Search s where s.type = ?1 and s.name like %?2%")
-    public List<Search> findSearchesByTypeAndNameIsLike(String type,String name);
+    List<Search> findSearchesByTypeAndNameIsLike(String type,String name);
 }

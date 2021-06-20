@@ -45,4 +45,34 @@ public class General {
     @Column(columnDefinition = "text")
     private String celltype;
 
+    @Column
+    private Integer total_reported_cell;
+
+    @Column
+    private Integer celltype_num;
+
+    @Column
+    private String cell_source;
+
+    @Column(length = 100)
+    private String technique;
+
+    @Column
+    private String doi;
+
+    @Column(length = 100)
+    private String journal;
+
+    @Column
+    private String title;
+
+    @Column
+    private String date;
+
+    @Column
+    private String contrasts;
+
+    @Column
+    private String developmentalstage;
+
 }
