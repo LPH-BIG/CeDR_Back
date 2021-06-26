@@ -38,6 +38,9 @@ public class Association {
     @Column(length = 100)
     private String inst;
 
+    @Column(length = 100)
+    private String drug;
+
     @Column
     private Double pvalue1;
 

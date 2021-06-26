@@ -105,7 +105,7 @@ public class AssociationController {
             if (association.getPvalue1()<=0.01 && association.getPvalue2()<=0.01){
                 Map<String,String> map2 = new HashMap<>();
                 map2.put("from",association.getCelltype());
-                map2.put("to",association.getInst());
+                map2.put("to",association.getDrug());
                 networkList.add(map1);
                 networkList.add(map2);
             }
