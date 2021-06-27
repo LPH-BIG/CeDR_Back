@@ -65,4 +65,10 @@ public class Association {
     @Column(columnDefinition = "text")
     private String overlapgene;
 
+    @Column
+    private String photocelltype;
+
+    @Column
+    private String photodrug;
+
 }
