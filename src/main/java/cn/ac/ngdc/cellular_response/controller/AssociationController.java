@@ -31,8 +31,8 @@ public class AssociationController {
                         @RequestParam(value = "phenotype",required = false) String phenotype,
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
-                        @RequestParam(value = "pcutoff",required = false,defaultValue = "0.1") Double pcutoff,
-                        @RequestParam(value = "orcutoff",required = false,defaultValue = "1") Double orcutoff){
+                        @RequestParam(value = "pcutoff",required = false) Double pcutoff,
+                        @RequestParam(value = "orcutoff",required = false) Double orcutoff){
         if (pageIndex == 0){
             pageIndex = 1;
         }

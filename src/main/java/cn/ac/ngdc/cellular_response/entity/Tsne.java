@@ -21,8 +21,8 @@ public class Tsne {
     @Column(length = 250)
     private String name;
 
-    @Column(length = 250)
-    private String cellname;
+//    @Column(length = 250)
+//    private String cellname;
 
     @Column
     private Double x;
