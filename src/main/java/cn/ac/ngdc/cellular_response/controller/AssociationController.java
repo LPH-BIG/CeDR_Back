@@ -33,9 +33,9 @@ public class AssociationController {
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
                         @RequestParam(value = "pcutoff",required = false,defaultValue = "0.1") Double pcutoff,
                         @RequestParam(value = "orcutoff",required = false,defaultValue = "1") Double orcutoff){
-//        if (pageIndex == 0){
-//            pageIndex = 1;
-//        }
+        if (pageIndex == 0){
+            pageIndex = 1;
+        }
         Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         return associationList;
     }
