@@ -31,11 +31,11 @@ public class AssociationController {
                         @RequestParam(value = "phenotype",required = false) String phenotype,
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
-                        @RequestParam(value = "pcutoff",required = false,defaultValue = "0.05") Double pcutoff,
-                        @RequestParam(value = "orcutoff",required = false,defaultValue = "0") Double orcutoff){
-//        if (pageIndex == 0){
-//            pageIndex = 1;
-//        }
+                        @RequestParam(value = "pcutoff",required = false,defaultValue = "0.1") Double pcutoff,
+                        @RequestParam(value = "orcutoff",required = false,defaultValue = "1") Double orcutoff){
+        if (pageIndex == 0){
+            pageIndex = 1;
+        }
         Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         return associationList;
     }

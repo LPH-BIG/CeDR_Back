@@ -55,7 +55,7 @@ public class AssociationService {
                     predicateList.add(criteriaBuilder.equal(root.get("overlapgene"),overlapgene));
                 }
                 if (drug != null){
-                    predicateList.add(criteriaBuilder.equal(root.get("inst").as(String.class),drug));
+                    predicateList.add(criteriaBuilder.equal(root.get("drug").as(String.class),drug));
                 }
                 if (pcutoff != null){
                     predicateList.add(criteriaBuilder.le(root.get("pvalue1").as(Double.class),pcutoff));
