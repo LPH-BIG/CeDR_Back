@@ -96,11 +96,19 @@ public class AssociationController {
         Result associationList = associationService.queryAssociation(0,0,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         List<Association> associations = (List<Association>) associationList.getData();
         HashSet<Object> networkList = new HashSet<>();
+        HashSet<Object> nodeList = new HashSet<>();
         Map<String,Object> objectMap = new HashMap<>();
         for (Association association : associations){
             Map<String,String> map1 = new HashMap<>();
             map1.put("from",association.getSubproject());
             map1.put("to",association.getCelltype());
+            Map<String,Object> nodeMap1 = new HashMap<>();
+            Map<String,Object> markerMap1 = new HashMap<>();
+            markerMap1.put("radius",10);
+            nodeMap1.put("marker",markerMap1);
+            nodeMap1.put("id",association.getSubproject());
+            nodeMap1.put("color","red");
+            nodeList.add(nodeMap1);
 
             if (null!=cellType || null!=drug){
                     Map<String,String> map2 = new HashMap<>();
@@ -108,6 +116,13 @@ public class AssociationController {
                     map2.put("to",association.getDrug());
                     networkList.add(map1);
                     networkList.add(map2);
+                    Map<String,Object> nodeMap2 = new HashMap<>();
+                    Map<String,Object> markerMap2 = new HashMap<>();
+                    markerMap2.put("radius",7);
+                    nodeMap2.put("marker",markerMap2);
+                    nodeMap2.put("id",association.getCelltype());
+                    nodeMap2.put("color","orange");
+                    nodeList.add(nodeMap2);
             }else {
                 if (association.getPvalue1()<=0.01 && association.getPvalue2()<=0.01){
                     Map<String,String> map2 = new HashMap<>();
@@ -115,11 +130,20 @@ public class AssociationController {
                     map2.put("to",association.getDrug());
                     networkList.add(map1);
                     networkList.add(map2);
+                    Map<String,Object> nodeMap2 = new HashMap<>();
+                    Map<String,Object> markerMap2 = new HashMap<>();
+                    markerMap2.put("radius",7);
+                    nodeMap2.put("marker",markerMap2);
+                    nodeMap2.put("id",association.getCelltype());
+                    nodeMap2.put("color","orange");
+                    nodeList.add(nodeMap2);
                 }
             }
 
         }
         objectMap.put("data",networkList);
+//        TODO://node调整
+        objectMap.put("nodes",nodeList);
         return ResultFactory.buildSuccessResult(objectMap,null);
     }
 
