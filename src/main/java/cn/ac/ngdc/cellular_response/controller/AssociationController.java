@@ -68,7 +68,7 @@ public class AssociationController {
 //                Tissue.add(association.getTissue());
 //                Phenotype.add(association.getPhenotype());
                 Celltype.add(association.getCelltype());
-                Drug.add(association.getInst());
+                Drug.add(association.getDrug());
                 Overlapgene.add(association.getOverlapgene());
             }
             Keywords keywords = new Keywords(Celltype,Drug,Overlapgene);
@@ -86,12 +86,12 @@ public class AssociationController {
                         @RequestParam(value = "project",required = false) String project,
                         @RequestParam(value = "subproject",required = false) String subproject,
                         @RequestParam(value = "tissue",required = false) String tissue,
-                        @RequestParam(value = "cellType",required = false) String cellType,
+                        @RequestParam(value = "celltype",required = false) String cellType,
                         @RequestParam(value = "phenotype",required = false) String phenotype,
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
                         @RequestParam(value = "drug",required = false) String drug,
-                        @RequestParam(value = "pcutoff",required = false,defaultValue = "0.1") Double pcutoff,
-                        @RequestParam(value = "orcutoff",required = false,defaultValue = "1") Double orcutoff){
+                        @RequestParam(value = "pcutoff",required = false) Double pcutoff,
+                        @RequestParam(value = "orcutoff",required = false) Double orcutoff){
 
         Result associationList = associationService.queryAssociation(0,0,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         List<Association> associations = (List<Association>) associationList.getData();
@@ -102,13 +102,22 @@ public class AssociationController {
             map1.put("from",association.getSubproject());
             map1.put("to",association.getCelltype());
 
-            if (association.getPvalue1()<=0.01 && association.getPvalue2()<=0.01){
-                Map<String,String> map2 = new HashMap<>();
-                map2.put("from",association.getCelltype());
-                map2.put("to",association.getDrug());
-                networkList.add(map1);
-                networkList.add(map2);
+            if (null!=cellType || null!=drug){
+                    Map<String,String> map2 = new HashMap<>();
+                    map2.put("from",association.getCelltype());
+                    map2.put("to",association.getDrug());
+                    networkList.add(map1);
+                    networkList.add(map2);
+            }else {
+                if (association.getPvalue1()<=0.01 && association.getPvalue2()<=0.01){
+                    Map<String,String> map2 = new HashMap<>();
+                    map2.put("from",association.getCelltype());
+                    map2.put("to",association.getDrug());
+                    networkList.add(map1);
+                    networkList.add(map2);
+                }
             }
+
         }
         objectMap.put("data",networkList);
         return ResultFactory.buildSuccessResult(objectMap,null);
