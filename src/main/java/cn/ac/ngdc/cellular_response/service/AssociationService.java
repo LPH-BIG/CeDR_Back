@@ -74,7 +74,7 @@ public class AssociationService {
             if (pageIndex == 0 && pageSize == 0){
                 data = associationDAO.findAll(queryCondition);
             }else {
-                Sort sort = Sort.by(Sort.Direction.ASC, "id");
+                Sort sort = Sort.by(Sort.Direction.ASC, "pvalue1");
                 data = associationDAO.findAll(queryCondition, PageRequest.of(pageIndex, pageSize,sort)).getContent();
             }
             total = associationDAO.count(queryCondition);
