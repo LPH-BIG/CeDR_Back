@@ -33,16 +33,16 @@ public class General {
     @Column(length = 100)
     private String phenotype;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String reference;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String description;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String drug;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String celltype;
 
     @Column

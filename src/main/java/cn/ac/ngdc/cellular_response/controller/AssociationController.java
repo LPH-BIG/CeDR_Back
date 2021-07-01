@@ -33,11 +33,23 @@ public class AssociationController {
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
                         @RequestParam(value = "pcutoff",required = false) Double pcutoff,
                         @RequestParam(value = "orcutoff",required = false) Double orcutoff){
-        if (pageIndex == 0){
-            pageIndex = 1;
+
+        if (    pageIndex == 0 && pageSize ==0 &&
+                project == null && subproject ==null
+                && source==null && tissue==null
+                && cellType==null && phenotype==null
+                && drug==null && overlapgene==null
+                && pcutoff==null && orcutoff==null
+        ){
+            return ResultFactory.buildFailResult("");
+        }else {
+            if (pageIndex==0){
+                pageIndex=1;
+            }
+            Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
+            return associationList;
         }
-        Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,source,project,subproject,tissue,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
-        return associationList;
+
     }
     @CrossOrigin
     @GetMapping("/searchLike")
@@ -52,7 +64,7 @@ public class AssociationController {
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "pcutoff",required = false) Double pcutoff,
                         @RequestParam(value = "orcutoff",required = false) Double orcutoff){
-        if(null == source && null == project && null == subproject && null == tissue && null == cellType  && null == overlapgene  && null == drug){
+        if (null == source && null == project && null == subproject && null == tissue && null == cellType  && null == overlapgene  && null == drug){
             return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
         }
         List<Association> associationList = associationService.queryLike(0,0,source,project,subproject,tissue,cellType,overlapgene,drug,pcutoff,orcutoff);
