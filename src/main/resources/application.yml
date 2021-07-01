@@ -13,7 +13,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+#      dialect:com.ac.ngdc.cellular_response.config.MySQL5InnoDBDialectUtf8mb4
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false
