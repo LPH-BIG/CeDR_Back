@@ -62,8 +62,8 @@ public class AssociationService {
                     predicateList.add(criteriaBuilder.le(root.get("pvalue2").as(Double.class),pcutoff));
                 }
                 if (orcutoff != null){
-                    predicateList.add(criteriaBuilder.ge(root.get("oddsratio1").as(Double.class),orcutoff));
-                    predicateList.add(criteriaBuilder.ge(root.get("oddsratio2").as(Double.class),orcutoff));
+                    predicateList.add(criteriaBuilder.le(root.get("oddsratio1").as(Double.class),orcutoff));
+                    predicateList.add(criteriaBuilder.le(root.get("oddsratio2").as(Double.class),orcutoff));
                 }
 
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));

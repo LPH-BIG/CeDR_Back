@@ -31,7 +31,14 @@ public class TsneService {
                     allxy.add(xy);
                 }
             }
-            cell.put("data",allxy);
+            Collections.shuffle(allxy);
+//            调整点的数目
+            int randomSeriesLength = allxy.size()/12;
+            if (randomSeriesLength == 0){
+                randomSeriesLength = 1;
+            }
+            List<Object> randomSeries = allxy.subList(0,randomSeriesLength);
+            cell.put("data",randomSeries);
             maps.add(cell);
         }
 //        System.out.println(tsneList.toString());
