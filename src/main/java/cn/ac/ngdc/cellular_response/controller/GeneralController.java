@@ -49,9 +49,9 @@ public class GeneralController {
                             @RequestParam(value = "phenotype",required = false) String phenotype,
                             @RequestParam(value = "celltype",required = false) String cellType,
                             @RequestParam(value = "drug",required = false) String drug){
-        if(null == source && null == project && null == subproject && null == tissue && null == phenotype && null == cellType   && null == drug){
-            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
-        }
+//        if(null == source && null == project && null == subproject && null == tissue && null == phenotype && null == cellType   && null == drug){
+//            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
+//        }
         List<General> generalList = generalService.queryLike(source,project,subproject,tissue,phenotype,cellType,drug);
         if(null != generalList){
             HashSet<String> Source = new HashSet<String>();
