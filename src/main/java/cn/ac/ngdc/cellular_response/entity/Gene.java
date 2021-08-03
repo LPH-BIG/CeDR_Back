@@ -24,13 +24,13 @@ public class Gene {
     @Column
     private Integer chromosome;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String description;
 
     @Column(length = 100)
     private String type;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String fullname;
 
     @Column

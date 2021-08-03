@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface PieDAO extends JpaRepository<Pie,Integer> {
 
-    public List<Pie> findAllByDataset(String dataset);
+    public List<Pie> findByDatasetid(String dataset);
 
 }

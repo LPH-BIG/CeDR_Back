@@ -13,7 +13,7 @@ public class TsneService {
     @Autowired
     TsneDAO tsneDAO;
     public Object findByName(String name){
-        List<Tsne> tsneList = tsneDAO.findByName(name);
+        List<Tsne> tsneList = tsneDAO.findByDatasetid(name);
         List<Object> maps = new ArrayList<>();
         HashSet<String> cellTypes = new HashSet<>();
         for (Tsne tsne : tsneList){

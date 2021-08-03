@@ -22,8 +22,8 @@ import java.util.List;
 public class AssociationService {
     @Autowired
     AssociationDAO associationDAO;
-    public Result queryAssociation(Integer pageSize, Integer pageIndex,
-                                   String source,String project,String subproject, String tissue, String cellType,
+    public Result queryAssociation(Integer pageSize, Integer pageIndex,String datasetid, String associationid,
+                                   String source,String project, String tissue,String tissuegroup, String cellType,
                                    String phenotype,String overlapgene, String drug, Double pcutoff, Double orcutoff){
         Long total = 0L;
         List<Association> data = null;
@@ -33,14 +33,20 @@ public class AssociationService {
             public Predicate toPredicate(Root<Association> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
                 List<Predicate> predicateList = new ArrayList<>();
+                if (datasetid != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("datasetid"),datasetid));
+                }
+                if (associationid != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("associationid"),associationid));
+                }
                 if (source != null){
                     predicateList.add(criteriaBuilder.equal(root.get("source"),source));
                 }
                 if (project != null){
                     predicateList.add(criteriaBuilder.equal(root.get("project"),project));
                 }
-                if (subproject != null){
-                    predicateList.add(criteriaBuilder.equal(root.get("subproject"),subproject));
+                if (tissuegroup != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("tissuegroup"),tissuegroup));
                 }
                 if (tissue != null){
                     predicateList.add(criteriaBuilder.equal(root.get("tissue"),tissue));
@@ -87,8 +93,8 @@ public class AssociationService {
         return ResultFactory.buildSuccessResult(data,meta);
     }
 
-    public List<Association> queryLike(Integer pageSize,Integer pageIndex,
-                                              String source,String project,String subproject,String tissue,String cellType,
+    public List<Association> queryLike(Integer pageSize,Integer pageIndex,String datasetid, String associationid,
+                                              String source,String project,String tissue,String tissuegroup,String cellType,
                                               String overlapgene,String drug,Double pcutoff,Double orcutoff){
 //        Long total = 0L;
         List<Association> data = null;
@@ -97,14 +103,20 @@ public class AssociationService {
             public Predicate toPredicate(Root<Association> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
                 List<Predicate> predicateList = new ArrayList<>();
+                if (datasetid != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("datasetid"),datasetid));
+                }
+                if (associationid != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("associationid"),associationid));
+                }
                 if (source != null){
                     predicateList.add(criteriaBuilder.equal(root.get("source"),source));
                 }
                 if (project != null){
                     predicateList.add(criteriaBuilder.equal(root.get("project"),project));
                 }
-                if (subproject != null){
-                    predicateList.add(criteriaBuilder.equal(root.get("subproject"),subproject));
+                if (tissuegroup != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("tissuegroup"),tissuegroup));
                 }
                 if (tissue != null){
                     predicateList.add(criteriaBuilder.like(root.get("tissue"),"%" + tissue + "%"));

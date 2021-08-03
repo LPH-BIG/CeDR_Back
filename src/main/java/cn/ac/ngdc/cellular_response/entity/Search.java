@@ -18,9 +18,9 @@ public class Search {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(length = 100,nullable = false)
     private String type;
 
-    @Column
+    @Column(length = 100,nullable = false)
     private String name;
 }

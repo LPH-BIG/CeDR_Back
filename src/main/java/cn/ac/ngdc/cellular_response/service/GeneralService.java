@@ -24,8 +24,8 @@ public class GeneralService {
     @Autowired
     GeneralDAO generalDAO;
 
-    public Result queryGeneral(Integer pageSize, Integer pageIndex,
-                               String source,String project,String subproject, String tissue, String cellType,
+    public Result queryGeneral(Integer pageSize, Integer pageIndex,String datasetid,
+                               String source,String project, String tissue,String tissuegroup ,String cellType,
                                String phenotype, String drug){
 
         Long total = 0L;
@@ -36,17 +36,20 @@ public class GeneralService {
             public Predicate toPredicate(Root<General> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
                 List<Predicate> predicateList = new ArrayList<>();
+                if (datasetid != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("datasetid"),datasetid));
+                }
                 if (source != null){
                     predicateList.add(criteriaBuilder.equal(root.get("source"),source));
                 }
                 if (project != null){
                     predicateList.add(criteriaBuilder.equal(root.get("project"),project));
                 }
-                if (subproject != null){
-                    predicateList.add(criteriaBuilder.equal(root.get("subproject"),subproject));
-                }
                 if (tissue != null){
                     predicateList.add(criteriaBuilder.equal(root.get("tissue"),tissue));
+                }
+                if (tissuegroup != null){
+                    predicateList.add(criteriaBuilder.equal(root.get("tissuegroup"),tissuegroup));
                 }
                 if (cellType != null){
                     predicateList.add(criteriaBuilder.like(root.get("celltype"),cellType));
@@ -77,7 +80,7 @@ public class GeneralService {
         return ResultFactory.buildSuccessResult(data,meta);
     }
 
-    public List<General> queryLike(String source,String project,String subproject,String tissue,String phenotype,String celltype,String drug){
+    public List<General> queryLike(String source,String project,String tissue,String tissuegroup,String phenotype,String celltype,String drug){
         List<General> generalList = null;
         Specification<General> queryCondition = new Specification<General>() {
             @Override
@@ -90,11 +93,14 @@ public class GeneralService {
                 if (project != null){
                     predicateList.add(criteriaBuilder.like(root.get("project"),"%" + project + "%"));
                 }
-                if (subproject != null){
-                    predicateList.add(criteriaBuilder.like(root.get("subproject"),"%" + subproject + "%"));
-                }
                 if (tissue != null){
                     predicateList.add(criteriaBuilder.like(root.get("tissue"),"%" + tissue + "%"));
+                }
+                if (tissuegroup != null){
+                    predicateList.add(criteriaBuilder.like(root.get("tissuegroup"),"%" + tissuegroup + "%"));
+                }
+                if (phenotype != null){
+                    predicateList.add(criteriaBuilder.like(root.get("phenotype"),"%" + phenotype + "%"));
                 }
                 if (celltype != null){
                     predicateList.add(criteriaBuilder.like(root.get("celltype"),"%" + celltype + "%"));

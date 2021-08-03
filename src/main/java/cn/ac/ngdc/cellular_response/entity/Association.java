@@ -17,17 +17,23 @@ public class Association {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 100,nullable = false)
+    private String datasetid;
+
+    @Column(length = 100,nullable = false,unique = true)
+    private String associationid;
+
     @Column(length = 100)
     private String source;
 
     @Column(length = 100)
     private String project;
 
-    @Column(length = 200)
-    private String subproject;
+    @Column
+    private String tissue;
 
     @Column(length = 100)
-    private String tissue;
+    private String tissuegroup;
 
     @Column(length = 100)
     private String phenotype;
@@ -62,13 +68,21 @@ public class Association {
     @Column
     private Double overlapgenenum;
 
-    @Column(columnDefinition = "text")
+//    @Column(columnDefinition = "text")
+    @Column
     private String overlapgene;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String photocelltype;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String photodrug;
+
+    @Column
+    private String matrixplot;
+
+    @Column
+    private String violinplot;
+
 
 }

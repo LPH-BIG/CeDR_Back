@@ -27,15 +27,16 @@ public class GeneralController {
     @GetMapping("/general")
     public Result query(@RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize,
                         @RequestParam(value = "current",required = false,defaultValue = "1") Integer pageIndex,
+                        @RequestParam(value = "datasetid",required = false) String datasetid,
                         @RequestParam(value = "source",required = false) String source,
                         @RequestParam(value = "project",required = false) String project,
-                        @RequestParam(value = "subproject",required = false) String subproject,
+                        @RequestParam(value = "tissuegroup",required = false) String tissuegroup,
                         @RequestParam(value = "tissue",required = false) String tissue,
                         @RequestParam(value = "cellType",required = false) String cellType,
                         @RequestParam(value = "phenotype",required = false) String phenotype,
                         @RequestParam(value = "drug",required = false) String drug){
 
-        Result generalList = generalService.queryGeneral(pageSize,pageIndex-1,source,project,subproject,tissue,cellType,phenotype,drug);
+        Result generalList = generalService.queryGeneral(pageSize,pageIndex-1,datasetid,source,project,tissue,tissuegroup,cellType,phenotype,drug);
         return generalList;
     }
 
@@ -44,7 +45,7 @@ public class GeneralController {
     @GetMapping("/generalLike")
     public Result queryLike(@RequestParam(value = "source",required = false) String source,
                             @RequestParam(value = "project",required = false) String project,
-                            @RequestParam(value = "subproject",required = false) String subproject,
+                            @RequestParam(value = "tissuegroup",required = false) String tissuegroup,
                             @RequestParam(value = "tissue",required = false) String tissue,
                             @RequestParam(value = "phenotype",required = false) String phenotype,
                             @RequestParam(value = "celltype",required = false) String cellType,
@@ -52,11 +53,11 @@ public class GeneralController {
 //        if(null == source && null == project && null == subproject && null == tissue && null == phenotype && null == cellType   && null == drug){
 //            return ResultFactory.buildResult(ResultCode.NOT_FOUND,"please check the name",null,null);
 //        }
-        List<General> generalList = generalService.queryLike(source,project,subproject,tissue,phenotype,cellType,drug);
+        List<General> generalList = generalService.queryLike(source,project,tissue,tissuegroup,phenotype,cellType,drug);
         if(null != generalList){
             HashSet<String> Source = new HashSet<String>();
             HashSet<String> Project = new HashSet<String>();
-            HashSet<String> Subproject = new HashSet<String>();
+            HashSet<String> Dataset = new HashSet<String>();
             HashSet<String> Tissue = new HashSet<String>();
             HashSet<String> Phenotype = new HashSet<String>();
             HashSet<String> Celltype = new HashSet<String>();
@@ -64,7 +65,7 @@ public class GeneralController {
             for (General general : generalList){
                 Source.add(general.getSource());
                 Project.add(general.getProject());
-                Subproject.add(general.getSubproject());
+                Dataset.add(general.getDatasetid());
                 Tissue.add(general.getTissue());
                 Phenotype.add(general.getPhenotype());
                 Celltype.add(general.getCelltype());
@@ -73,7 +74,7 @@ public class GeneralController {
             Map<String,Object> maps = new HashMap<>();
             maps.put("source",Source);
             maps.put("project",Project);
-            maps.put("subproject",Subproject);
+            maps.put("dataset",Dataset);
             maps.put("tissue",Tissue);
             maps.put("phenotype",Phenotype);
             maps.put("celltype",Celltype);

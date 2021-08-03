@@ -18,26 +18,23 @@ public class General {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 100,nullable = false,unique = true)
+    private String datasetid;
+
     @Column(length = 100)
     private String source;
 
     @Column(length = 100)
     private String project;
 
-    @Column(length = 200)
-    private String subproject;
-
-    @Column(length = 100)
+    @Column
     private String tissue;
 
     @Column(length = 100)
+    private String tissuegroup;
+
+    @Column(length = 100)
     private String phenotype;
-
-    @Column
-    private String reference;
-
-    @Column
-    private String description;
 
     @Column
     private String drug;
@@ -60,19 +57,7 @@ public class General {
     @Column
     private String doi;
 
-    @Column(length = 100)
-    private String journal;
-
     @Column
     private String title;
-
-    @Column
-    private String date;
-
-    @Column
-    private String contrasts;
-
-    @Column
-    private String developmentalstage;
 
 }

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface TsneDAO extends JpaRepository<Tsne,Integer> {
 
-    public List<Tsne> findByName(String name);
+    public List<Tsne> findByDatasetid(String name);
+//    public List<Tsne> findByName(String name);
 }

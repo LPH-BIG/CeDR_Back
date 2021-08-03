@@ -18,10 +18,10 @@ public class Pie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 250)
-    private String dataset;
+    @Column(length = 100,nullable = false)
+    private String datasetid;
 
-    @Column(length = 250)
+    @Column
     private String name;
 
     @Column

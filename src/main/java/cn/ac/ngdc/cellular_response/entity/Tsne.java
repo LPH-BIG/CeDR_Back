@@ -18,11 +18,8 @@ public class Tsne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 250)
-    private String name;
-
-//    @Column(length = 250)
-//    private String cellname;
+    @Column(length = 100,nullable = false)
+    private String datasetid;
 
     @Column
     private Double x;
