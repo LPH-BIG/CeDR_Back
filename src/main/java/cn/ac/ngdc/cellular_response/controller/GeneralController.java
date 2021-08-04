@@ -59,6 +59,7 @@ public class GeneralController {
             HashSet<String> Project = new HashSet<String>();
             HashSet<String> Dataset = new HashSet<String>();
             HashSet<String> Tissue = new HashSet<String>();
+            HashSet<String> Tissuegroup = new HashSet<String>();
             HashSet<String> Phenotype = new HashSet<String>();
             HashSet<String> Celltype = new HashSet<String>();
             HashSet<String> Drug = new HashSet<String>();
@@ -67,6 +68,7 @@ public class GeneralController {
                 Project.add(general.getProject());
                 Dataset.add(general.getDatasetid());
                 Tissue.add(general.getTissue());
+                Tissuegroup.add(general.getTissuegroup());
                 Phenotype.add(general.getPhenotype());
                 Celltype.add(general.getCelltype());
                 Drug.add(general.getDrug());
@@ -76,6 +78,7 @@ public class GeneralController {
             maps.put("project",Project);
             maps.put("dataset",Dataset);
             maps.put("tissue",Tissue);
+            maps.put("tissuegroup",Tissuegroup);
             maps.put("phenotype",Phenotype);
             maps.put("celltype",Celltype);
             maps.put("drug",Drug);
