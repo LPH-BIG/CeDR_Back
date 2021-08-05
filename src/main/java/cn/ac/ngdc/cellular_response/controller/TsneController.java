@@ -18,7 +18,7 @@ public class TsneController {
     TsneService tsneService;
     @CrossOrigin
     @GetMapping("/tsne")
-    public Result getByName(@RequestParam(value = "dataset",required = true) String dataset) {
+    public Result getByName(@RequestParam(value = "datasetid",required = true) String dataset) {
         Object tsne = tsneService.findByName(dataset);
         return ResultFactory.buildSuccessResult(tsne,null);
     }

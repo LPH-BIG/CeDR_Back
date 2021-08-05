@@ -16,7 +16,7 @@ public class PieController {
 
     @CrossOrigin
     @GetMapping("/pie")
-    public Result getByName(@RequestParam(value = "dataset",required = true) String dataset){
+    public Result getByName(@RequestParam(value = "datasetid",required = true) String dataset){
 
         return ResultFactory.buildSuccessResult(pieDAO.findByDatasetid(dataset),null);
     }
