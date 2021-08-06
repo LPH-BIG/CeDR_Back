@@ -112,7 +112,7 @@ public class AssociationController {
                         @RequestParam(value = "pcutoff",required = false) Double pcutoff,
                         @RequestParam(value = "orcutoff",required = false) Double orcutoff){
 //调整网络图的点的数目
-        Result associationList = associationService.queryAssociation(0,0,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,0.02,orcutoff);
+        Result associationList = associationService.queryAssociation(0,0,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
         List<Association> associations = (List<Association>) associationList.getData();
         HashSet<Object> networkList = new HashSet<>();
         HashSet<Object> nodeList = new HashSet<>();

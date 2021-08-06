@@ -68,8 +68,7 @@ public class Association {
     @Column
     private Double overlapgenenum;
 
-//    @Column(columnDefinition = "text")
-    @Column
+    @Column(columnDefinition = "text")
     private String overlapgene;
 
     @Column
