@@ -34,7 +34,12 @@ public class AssociationController {
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
                         @RequestParam(value = "pcutoff",required = false) Double pcutoff,
-                        @RequestParam(value = "orcutoff",required = false) Double orcutoff){
+                        @RequestParam(value = "orcutoff",required = false) Double orcutoff,
+                        @RequestParam(value = "pcutoff2",required = false) Double pcutoff2,
+                        @RequestParam(value = "orcutoff2",required = false) Double orcutoff2,
+                        @RequestParam(value = "spcutoff",required = false) Double spcutoff,
+                        @RequestParam(value = "spearman",required = false) Double spearman
+    ){
 
         if (    pageIndex == 0 && pageSize ==0 &&
                 project == null && datasetid ==null
@@ -48,7 +53,7 @@ public class AssociationController {
             if (pageIndex==0){
                 pageIndex=1;
             }
-            Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
+            Result associationList = associationService.queryAssociation(pageSize,pageIndex-1,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff,pcutoff2,orcutoff2,spcutoff,spearman);
             return associationList;
         }
 
@@ -110,9 +115,9 @@ public class AssociationController {
                         @RequestParam(value = "overlapgene",required = false) String overlapgene,
                         @RequestParam(value = "drug",required = false) String drug,
                         @RequestParam(value = "pcutoff",required = false) Double pcutoff,
-                        @RequestParam(value = "orcutoff",required = false) Double orcutoff){
+                        @RequestParam(value = "orcutoff",required = false) Double orcutoff, @RequestParam(value = "pcutoff2",required = false) Double pcutoff2, @RequestParam(value = "orcutoff2",required = false) Double orcutoff2, @RequestParam(value = "spcutoff",required = false) Double spcutoff, @RequestParam(value = "spearman",required = false) Double spearman){
 //调整网络图的点的数目
-        Result associationList = associationService.queryAssociation(0,0,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff);
+        Result associationList = associationService.queryAssociation(0,0,datasetid,associationid,source,project,tissue,tissuegroup,cellType,phenotype,overlapgene,drug,pcutoff,orcutoff,pcutoff2,orcutoff2,spcutoff,spearman);
         List<Association> associations = (List<Association>) associationList.getData();
         HashSet<Object> networkList = new HashSet<>();
         HashSet<Object> nodeList = new HashSet<>();

@@ -24,7 +24,8 @@ public class AssociationService {
     AssociationDAO associationDAO;
     public Result queryAssociation(Integer pageSize, Integer pageIndex,String datasetid, String associationid,
                                    String source,String project, String tissue,String tissuegroup, String cellType,
-                                   String phenotype,String overlapgene, String drug, Double pcutoff, Double orcutoff){
+                                   String phenotype,String overlapgene, String drug, Double pcutoff, Double orcutoff,
+                                   Double pcutoff2, Double orcutoff2,Double spcutoff, Double spearman){
         Long total = 0L;
         List<Association> data = null;
         Meta meta = new Meta();
@@ -65,11 +66,21 @@ public class AssociationService {
                 }
                 if (pcutoff != null){
                     predicateList.add(criteriaBuilder.le(root.get("pvalue1").as(Double.class),pcutoff));
-                    predicateList.add(criteriaBuilder.le(root.get("pvalue2").as(Double.class),pcutoff));
                 }
                 if (orcutoff != null){
-                    predicateList.add(criteriaBuilder.le(root.get("oddsratio1").as(Double.class),orcutoff));
-                    predicateList.add(criteriaBuilder.le(root.get("oddsratio2").as(Double.class),orcutoff));
+                    predicateList.add(criteriaBuilder.ge(root.get("oddsratio1").as(Double.class),orcutoff));
+                }
+                if (pcutoff2 != null){
+                    predicateList.add(criteriaBuilder.le(root.get("pvalue2").as(Double.class),pcutoff));
+                }
+                if (orcutoff2 != null){
+                    predicateList.add(criteriaBuilder.ge(root.get("oddsratio2").as(Double.class),orcutoff));
+                }
+                if (spcutoff != null){
+                    predicateList.add(criteriaBuilder.le(root.get("spvalue").as(Double.class),spcutoff));
+                }
+                if (spearman != null){
+                    predicateList.add(criteriaBuilder.le(root.get("spearman").as(Double.class),spearman));
                 }
 
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
