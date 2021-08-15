@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "gene")
 public class Gene {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 100)
@@ -31,7 +31,7 @@ public class Gene {
     private String type;
 
     @Column
-    private String fullname;
+    private String other_name;
 
     @Column
     private String refs;
